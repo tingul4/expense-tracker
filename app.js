@@ -8,7 +8,7 @@ app.engine('hbs', exphbs({ defaultLayout: 'main', extname: 'hbs' }))
 app.set('view engine', 'hbs')
 
 app.get('/', (req, res) => {
-  res.render('home')
+  res.render('index')
 })
 
 app.listen(PORT, () => {
