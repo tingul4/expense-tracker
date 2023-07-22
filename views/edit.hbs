@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="mx-auto col-10 col-md-8 col-lg-3">
+    <div class="row my-3 align-items-center">
+      <div class="col col-md-4 col-lg-4">*必填欄位</div>
+      <div class="col col-md-8 col-lg-8 fs-3">請修改你的支出</div>
+    </div>
+    <form action="/edit" method="PUT">
+      <div class="row g-3 align-items-center mb-3">
+        <div class="col-auto">
+          <label for="name" class="col-form-label">名稱*</label>
+        </div>
+        <div class="col-auto">
+          <input type="text" class="form-control" id="name" value="">
+        </div>
+      </div>
+      <div class="row g-3 align-items-center mb-3">
+        <div class="col-auto">
+          <label for="date" class="form-label">日期*</label>
+        </div>
+        <div class="col-auto">
+          <input type="date" class="form-control" id="date" value="">
+        </div>
+      </div>
+      <div class="row g-3 align-items-center mb-3">
+        <div class="col-auto">
+          <label for="category" class="form-label">類別*</label>
+        </div>
+        <div class="col-auto">
+          <select name="category" id="category">
+            <option value="house">家居物業</option>
+            <option value="traffic">交通出行</option>
+            <option value="entertainment">休閒娛樂</option>
+            <option value="food">餐飲食品</option>
+            <option value="others">其他</option>
+          </select>
+        </div>
+      </div>
+      <div class="row g-3 align-items-center mb-3">
+        <div class="col-auto">
+          <label for="amount" class="form-label">金額*</label>
+        </div>
+        <div class="col-auto">
+          <input type="number" class="form-control" id="amount" value="">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">送出</button>
+    </form>
+  </div>
+</div>
