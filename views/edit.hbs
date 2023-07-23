@@ -10,7 +10,7 @@
           <label for="name" class="col-form-label">名稱*</label>
         </div>
         <div class="col-auto">
-          <input name="name" type="text" class="form-control" id="name" value={{ expense.name }}>
+          <input name="name" type="text" class="form-control" id="name" value={{ expense.name }} required>
         </div>
       </div>
       <div class="row g-3 align-items-center mb-3">
@@ -18,7 +18,7 @@
           <label for="date" class="form-label">日期*</label>
         </div>
         <div class="col-auto">
-          <input name="date" type="date" class="form-control" id="date" value={{ expense.date }}>
+          <input name="date" type="date" class="form-control" id="date" value={{ expense.date }} required>
         </div>
       </div>
       <div class="row g-3 align-items-center mb-3">
@@ -26,7 +26,7 @@
           <label for="category" class="form-label">類別*</label>
         </div>
         <div class="col-auto">
-          <select name="categoryId" id="category">
+          <select name="categoryId" id="category" required>
             <option value=1 {{#if categoryStatus.one}}selected{{/if}}>家居物業</option>
             <option value=2 {{#if categoryStatus.two}}selected{{/if}}>交通出行</option>
             <option value=3 {{#if categoryStatus.three}}selected{{/if}}>休閒娛樂</option>
@@ -40,7 +40,7 @@
           <label for="amount" class="form-label">金額*</label>
         </div>
         <div class="col-auto">
-          <input name="amount" type="number" class="form-control" id="amount" value={{ expense.amount }}>
+          <input name="amount" type="number" class="form-control" id="amount" value={{ expense.amount }} required>
         </div>
       </div>
       <button type="submit" class="btn btn-primary">送出</button>
