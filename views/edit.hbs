@@ -27,11 +27,11 @@
         </div>
         <div class="col-auto">
           <select name="categoryId" id="category" required>
-            <option value=1 {{#if categoryStatus.one}}selected{{/if}}>家居物業</option>
-            <option value=2 {{#if categoryStatus.two}}selected{{/if}}>交通出行</option>
-            <option value=3 {{#if categoryStatus.three}}selected{{/if}}>休閒娛樂</option>
-            <option value=4 {{#if categoryStatus.four}}selected{{/if}}>餐飲食品</option>
-            <option value=5 {{#if categoryStatus.five}}selected{{/if}}>其他</option>
+            <option value=1 {{#if isHouse}}selected{{/if}}>家居物業</option>
+            <option value=2 {{#if isTraffic}}selected{{/if}}>交通出行</option>
+            <option value=3 {{#if isEntertainment}}selected{{/if}}>休閒娛樂</option>
+            <option value=4 {{#if isFood}}selected{{/if}}>餐飲食品</option>
+            <option value=5 {{#if isOther}}selected{{/if}}>其他</option>
           </select>
         </div>
       </div>

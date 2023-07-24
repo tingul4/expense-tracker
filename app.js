@@ -60,18 +60,26 @@ app.get('/:id/edit', (req, res) => {
     .lean()
     .then(expense => {
       expense.date = expense.date.toJSON().slice(0, 10)
-      const categoryStatus = {}
-      if (expense.categoryId === 1)
-        categoryStatus.one = 1
-      if (expense.categoryId === 2)
-        categoryStatus.two = 1
-      if (expense.categoryId === 3)
-        categoryStatus.three = 1
-      if (expense.categoryId === 4)
-        categoryStatus.four = 1
-      if (expense.categoryId === 5)
-        categoryStatus.five = 1
-      res.render('edit', { expense, categoryStatus })
+      if (expense.categoryId === 1) {
+        const isHouse = true
+        res.render('edit', { expense, isHouse })
+      }
+      if (expense.categoryId === 2) {
+        const isTraffic = true
+        res.render('edit', { expense, isTraffic })
+      }
+      if (expense.categoryId === 3) {
+        const isEntertainment = true
+        res.render('edit', { expense, isEntertainment })
+      }
+      if (expense.categoryId === 4) {
+        const isFood = true
+        res.render('edit', { expense, isFood })
+      }
+      if (expense.categoryId === 5) {
+        const isOther = true
+        res.render('edit', { expense, isOther })
+      }
     })
     .catch(err => console.log(err))
 })
