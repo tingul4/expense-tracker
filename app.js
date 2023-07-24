@@ -16,17 +16,24 @@ app.use(methodOverride('_method'))
 
 app.get('/', (req, res) => {
   let totalAmount = 0
-  const CATEGORY = {
-    1: `<i class="fa-solid fa-house fa-xl"></i>`,
-    2: `<i class="fa-solid fa-van-shuttle fa-xl"></i>`,
-    3: `<i class="fa-solid fa-face-grin-beam fa-xl"></i>`,
-    4: `<i class="fa-solid fa-utensils fa-xl"></i>`,
-    5: `<i class="fa-solid fa-pen fa-xl"></i>`
-  }
+  const categoryId = req.query.categoryId
+  const CATEGORY = [
+    ``,
+    `<i class="fa-solid fa-house fa-xl"></i>`,
+    `<i class="fa-solid fa-van-shuttle fa-xl"></i>`,
+    `<i class="fa-solid fa-face-grin-beam fa-xl"></i>`,
+    `<i class="fa-solid fa-utensils fa-xl"></i>`,
+    `<i class="fa-solid fa-pen fa-xl"></i>`
+  ]
 
   Expense
     .find()
     .lean()
+    .then(expenses => {
+      if (!categoryId) return expenses
+      expenses = expenses.filter(expense => expense.categoryId === Number(categoryId))
+      return expenses
+    })
     .then(expenses => {
       expenses.forEach(expense => {
         expense.date = expense.date.toJSON().slice(0, 10)
