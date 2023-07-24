@@ -10,7 +10,11 @@
 <nav class="navbar bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand mx-2" href="/">家庭記帳本</a>
+    {{#if isAuthenticated}}
+    <a class="btn btn-outline-primary mx-2" href="/users/logout">Logout</a>
+    {{else}}
     <a class="btn btn-outline-primary mx-2" href="/users/login">Login</a>
+    {{/if}}
   </div>
 </nav>
 <body>
