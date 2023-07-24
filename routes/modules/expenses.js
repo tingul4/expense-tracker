@@ -8,16 +8,18 @@ router.get('/new', (req, res) => {
 
 router.post('/new', (req, res) => {
   const expenseInfo = req.body
+  const userId = req.user._id
   Expense
-    .create(expenseInfo)
+    .create({ ...expenseInfo, userId })
     .then(() => res.redirect('/'))
     .catch(err => console.log(err))
 })
 
 router.get('/:id/edit', (req, res) => {
   const _id = req.params.id
+  const userId = req.user._id
   Expense
-    .findOne({ _id })
+    .findOne({ _id, userId })
     .lean()
     .then(expense => {
       expense.date = expense.date.toJSON().slice(0, 10)
@@ -48,8 +50,9 @@ router.get('/:id/edit', (req, res) => {
 router.put('/:id/edit', (req, res) => {
   const _id = req.params.id
   const expenseInfo = req.body
+  const userId = req.user._id
   Expense
-    .findOne({ _id })
+    .findOne({ _id, userId })
     .then(expense => {
       Object.keys(expenseInfo).forEach(key => {
         expense[key] = expenseInfo[key]
@@ -62,8 +65,9 @@ router.put('/:id/edit', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   const _id = req.params.id
+  const userId = req.user._id
   Expense
-    .findOneAndDelete({ _id })
+    .findOneAndDelete({ _id, userId })
     .then(() => res.redirect('/'))
     .catch(err => console.log(err))
 })

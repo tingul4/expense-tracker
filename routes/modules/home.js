@@ -13,9 +13,10 @@ router.get('/', (req, res) => {
     `<i class="fa-solid fa-utensils fa-xl"></i>`,
     `<i class="fa-solid fa-pen fa-xl"></i>`
   ]
+  const userId = req.user._id
 
   Expense
-    .find()
+    .find({ userId })
     .lean()
     .then(expenses => {
       if (!categoryId) return expenses
