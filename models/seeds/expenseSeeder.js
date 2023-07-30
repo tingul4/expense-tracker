@@ -44,25 +44,43 @@ const SEED_USER = {
   password: '12345678'
 }
 
-db.once('open', () => {
-  Promise.all(Array.from(SEED_CATEGORY, seedCategory =>
+db.once('open', async () => {
+  await Promise.all(Array.from(SEED_CATEGORY, seedCategory =>
     Category.create(seedCategory)
   ))
-  .then(() => 
-    bcrypt
-      .genSalt(10)
-      .then(salt => bcrypt.hash(SEED_USER.password, salt))
-      .then(password => User.create({ ...SEED_USER, password }))
-      .then(user => {
-        const userId = user._id
-        return Promise.all(Array.from(SEED_EXPENSE, seedExpense => 
-          Expense.create({ ...seedExpense, userId })
-        ))
-      })
-  )
-  .then(() => {
-    console.log('done.')
-    process.exit()
-  })
-  .catch(err => console.log(err))
+  
+  const salt = await bcrypt.genSalt(10)
+  const password = await bcrypt.hash(SEED_USER.password, salt)  
+  const user = await User.create({ ...SEED_USER, password })
+  const userId = user._id
+  
+  await Promise.all(Array.from(SEED_EXPENSE, seedExpense => 
+    Expense.create({ ...seedExpense, userId })
+  ))
+
+  console.log('done.')
+  process.exit()
 })
+
+// db.once('open', () => {
+//   Promise.all(Array.from(SEED_CATEGORY, seedCategory =>
+//     Category.create(seedCategory)
+//   ))
+//   .then(() => 
+//     bcrypt
+//       .genSalt(10)
+//       .then(salt => bcrypt.hash(SEED_USER.password, salt))
+//       .then(password => User.create({ ...SEED_USER, password }))
+//       .then(user => {
+//         const userId = user._id
+//         return Promise.all(Array.from(SEED_EXPENSE, seedExpense => 
+//           Expense.create({ ...seedExpense, userId })
+//         ))
+//       })
+//   )
+//   .then(() => {
+//     console.log('done.')
+//     process.exit()
+//   })
+//   .catch(err => console.log(err))
+// })
